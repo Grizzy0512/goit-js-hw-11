@@ -11,7 +11,6 @@ import {
     
 } from "./js/render-functions";
 
-import { showError } from "./js/notification.js";
 
 const form = document.querySelector(".form");
 
@@ -29,21 +28,25 @@ form.addEventListener("submit", async (e) => {
             const images = data.hits;
 
             if (!images.length) {
-                showError(
-                    "Sorry, there are no images matching your search query. Please try again."
-                );
+               iziToast.error({
+                    message: "Sorry, there are no images matching your search query. Please try again.",
+                    position: "topRight"
+                });
                 return;
             }
             createGallery(images);
+            form.reset();
         })
         .catch(() => {
-            showError("Something went wrong. Please try again later.");
+            iziToast.error({
+                message: "Something went wrong. Please try again later.",
+                position: "topRight"
+            });
         })
         .finally(() => {
             hideLoader();
         });
-    form.reset();
+
 });
          
 
-getImagesByQuery("cat").then(console.log);
