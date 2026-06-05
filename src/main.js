@@ -1,4 +1,7 @@
 // Logic api//
+// Izi Toast //
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 import { getImagesByQuery } from "./js/pixabay-api";
 import {
     createGallery,
